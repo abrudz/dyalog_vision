@@ -1,0 +1,8 @@
+ f←∆SIGNAL ⍝ ⎕SIGNAL that takes a ⎕DMX for re-signalling
+ f←⎕SIGNAL{
+     0::∆SIGNAL ⎕DMX
+     9≠⎕NC'⍵':⍵
+     dmx←⎕DMX
+     _←'dmx'⎕NS ⍵
+     ⊂dmx.(('EN'EN)('EM'EM)('Message'(OSError{⍵,2⌽(×≢⊃⍬⍴2⌽⍺,⊂'')/'") ("',⊃⍬⍴2⌽⍺}Message)))
+ }

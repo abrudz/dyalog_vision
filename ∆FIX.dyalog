@@ -1,0 +1,8 @@
+ ∆FIX←{ ⍝ ⎕FIX
+     0::∆SIGNAL ⎕DMX
+     ⍺←1
+     1≥|≡⍵:⍺ ∇⊃⎕NGET('file://'(⊃⍤⍷↓⊢)⍵)1
+     names←⎕NL-3 4
+     glyphs←⊃¨'⍝ (\W\S*)'⎕S'\1'¨⊃∘⎕NR¨names
+     ⍺(⊃⎕RSI).⎕FIX glyphs ⍙To(⎕THIS,⍥⍕¨'.',¨names)⊢⍵
+ }

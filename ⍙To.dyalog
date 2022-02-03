@@ -1,0 +1,13 @@
+ ⍙To←{
+     mask←×⊃∘⍴¨⍺⍺
+
+     fromIgnore←'''[^'']*''' '⍝.*' '`(.)'
+     fromGlyphs←'⍣' '\W' '\w\b'⎕R' *⍣ *' '\\&' '&\\b'⊢mask/⍺⍺
+     from←fromIgnore,fromGlyphs
+
+     toIgnore←'&' '&' '\1'
+     toGlyphs←'^|$'⎕R' '⊢mask/⍵⍵
+     to←toIgnore,toGlyphs
+
+     from ⎕R to⊢⍵
+ }

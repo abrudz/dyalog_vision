@@ -1,0 +1,7 @@
+ ⍙Execute←{
+     names←⎕NL-3 4
+     glyphs←⊃¨'⍝ (\W\S*)'⎕S'\1'¨⊃∘⎕NR¨names
+     ⍺←⊃⎕RSI
+     85::⍬⊤⍬
+     1 ⍺.(85⌶)glyphs ⍙To(⎕THIS,⍥⍕¨'.',¨names)⊢⍵
+ }

@@ -1,0 +1,5 @@
+ Root←{ ⍝ √ (square) root
+     0::∆SIGNAL ⎕DMX
+     ⍺←2
+     ⍵*÷⍺
+ }
