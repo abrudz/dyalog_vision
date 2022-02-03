@@ -1,6 +1,7 @@
  ∆C←{ ⍝ ⎕C scalar
+     0::∆SIGNAL ⎕DMX
      ⍺←¯3
      0≡⍺:⍵
      0=≡⍺:⍺ ⎕C ⍵
-     ⍺ ∇¨⍵
+     ⍺ ∇ CircleDiaeresis 0 ⍙LA ⍵
  }

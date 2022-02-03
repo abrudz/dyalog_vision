@@ -9,5 +9,5 @@
      toGlyphs←'^|$'⎕R' '⊢mask/⍵⍵
      to←toIgnore,toGlyphs
 
-     from ⎕R to⊢⍵
+     from ⎕R to⍠1⊢⍵
  }

@@ -1,6 +1,6 @@
  Vel←{ ⍝ ∨ with sort
      0::∆SIGNAL ⎕DMX
-     2=⎕NC'⍺':⍺∨⍵
+     2=⎕NC'⍺':⍺∨⍙LA ⍵
      ⍬≡⍴⍵:⍵
      (⊂⍒⍵)⌷⍵
  }

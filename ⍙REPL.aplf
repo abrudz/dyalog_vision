@@ -21,7 +21,7 @@
  valid←×≢¨glyphs
  names⌿⍨←valid
  glyphs⌿⍨←valid
- from←'''[^'']*''' '⍝.*',' ?'∘,¨⎕THIS,⍥⍕¨'.',¨names,¨⊂' ?'
+ from←'''[^'']*''' '⍝.*',' ?'∘,¨⎕THIS,⍥⍕¨'.',¨names,¨⊂'\b ?'
  to←'&&',glyphs
 
  :While '→'≢⊃⌽' '~⍨input←⍞⊣⍞←6⍴''
@@ -39,7 +39,7 @@
          Err(⊢↓⍨'⍎'=⊃)⎕DMX.(OSError{⍵,2⌽(×≢⊃⍬⍴2⌽⍺,⊂'')/'") ("',⊃⍬⍴2⌽⊆⍺}Message{⍵,⍺,⍨': '/⍨×≢⍺}⊃⍬⍴DM,⊂'')
          pos←'^'⍳⍨caret←3⊃⎕DMX.DM
          shorten←11+(⊢-⍥≢from ⎕R to)pos↑code←2⊃⎕DMX.DM
-         Err'     ',11↓from ⎕R to⊢code
+         Err'      ',{(∨\' '≠⍵)/⍵}11↓from ⎕R to⊢code
          Err'     ',shorten↓caret
      :EndTrap
  :EndWhile
