@@ -26,7 +26,7 @@ You have three options:
 
 ### Content
 
-All scalar functions support [leading axis agreement]([Leading axis agreement - APL Wiki](https://aplwiki.com/wiki/Leading_axis_agreement)). In addition, the following is included:
+All scalar functions support [leading axis agreement](https://aplwiki.com/wiki/Leading_axis_agreement). In addition, the following is included:
 
 | Name                                        | Symbol    | Type* | Extension                                                                                                                                                                                                                             | Examples                                                                                                       |
 | ------------------------------------------- |:---------:|:-----:| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
