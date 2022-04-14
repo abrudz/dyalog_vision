@@ -1,5 +1,7 @@
  GreaterThan←{ ⍝ > monadic demote
      0::∆SIGNAL ⎕DMX
      0≠⎕NC'⍺':⍺>⍙LA ⍵
+     ⍝ More efficient than ⊃⍪⌿⊂⍤¯1⊢⍵
+     1≥≢⍴⍵:⍵
      ,[⍳2]⍵
  }
