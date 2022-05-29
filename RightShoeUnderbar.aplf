@@ -1,5 +1,10 @@
  RightShoeUnderbar←{ ⍝ ⊇ select/last
      0::∆SIGNAL ⎕DMX
      0=⎕NC'⍺':⊃⌽,⍵
-     ⍺⌷⍨∘⊃⍨⍤0 99⊢⍵
+     0::⎕SIGNAL 5(⊢-=)⎕EN
+     1≥|≡⍺:⍵⌷⍨⊂⍺
+     {
+         1≥|≡⍺:⍺⌷⍵
+         ⊃⍵[⊂⍺]
+     }∘⍵¨⍺
  }
