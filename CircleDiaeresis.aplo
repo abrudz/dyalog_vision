@@ -1,16 +1,33 @@
- CircleDiaeresis←{ ⍝ ⍥ also depth
-     0::∆SIGNAL ⎕DMX
+ Ö←{ ⍝ ⍥ ⍝ also depth
+     0::⎕SIGNAL⊂⎕DMX.(('EN'EN)('EM'EM)('Message'(OSError{⍵,2⌽(×≢⊃⍬⍴2⌽⍺,⊂'')/'") ("',⊃⍬⍴2⌽⍺}Message)))
+     ncs←⎕NC↑'⍺' '⍵⍵'
+     0 3≡ncs:⍺⍺ ⍵⍵ ⍵       ⍝   f⍥g Y
+     2 3≡ncs:⍺ ⍺⍺⍥⍵⍵ ⍵     ⍝ X f⍥g Y
+
+     1<≢⍴⍵⍵:⎕SIGNAL 4      ⍝ non-vec/scal: RANK
+     1≠1 4⍸≢⍵⍵:⎕SIGNAL 5   ⍝ not 1…3 elements: LENGTH
+     (c←⎕NS ⍬).⎕CT←1E¯14   ⍝ tolerant space
+     c.≢∘⌊⍨⍵⍵:⎕SIGNAL 11   ⍝ not ints: DOMAIN
+
+     0∊⎕NC'⍺':0⊢∘⍺⍺∇∇⍵⍵⊢⍵ ⍝ monadic: placeholder left arg
+
      ⍺←{⍵ ⋄ ⍺⍺}            ⍝ monadic: pass-thorugh
      a←⍺                   ⍝ [17941]
-     3=⎕NC'⍵⍵':⊢⍺ ⍺⍺⍥⍵⍵ ⍵  ⍝ f⍥g
      k←⌽3⍴⌽⍵⍵              ⍝ r → r r r    q r → r q r    p q r → p q r
-     n←k<0
+     n←k c.<0
      d←|≡¨3⍴⍵ ⍺ ⍵ ⍵
      (n/k)+←n/d
-     3 4∊⍨⎕NC'a':⍺⍺{⍵⍵<|≡⍵:∇¨⍵ ⋄ ⍺⍺ ⍵}(⊃k)⊢⍵ ⍝ called monadically
+     k⌊←d
+
      b←1↓k<d
-     ⍱/b:⍺ ⍺⍺ ⍵
-     </b:⍺∘∇¨⍵
-     >/b:∇∘⍵¨⍺
-     ∧/b:⍺ ∇¨⍵
+     b∧←0≠1↓d ⍝ bottomed out
+     r←⍵⍵<0
+     ww←r+⍵⍵
+     ww+←(⌈/d)×r∧0=ww
+     S←⍺⍺ ∇∇ ww
+     c.⍱/b:⍺ ⍺⍺ ⍵
+     c.</b:⍺∘S¨⍵
+     c.>/b:S∘⍵¨⍺
+     c.∧/b:⍺ S¨⍵
  }
+ 
