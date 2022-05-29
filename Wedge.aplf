@@ -1,6 +1,5 @@
- Wedge←{ ⍝ ∧ with sort
+ Wedge←{ ⍝ ∧ with promote
      0::∆SIGNAL ⎕DMX
-     2=⎕NC'⍺':⍺∨⍙LA ⍵
-     ⍬≡⍴⍵:⍵
-     (⊂⍋⍵)⌷⍵
+     0=⎕NC'⍺':⍵⍴⍨1,⍴⍵
+     ⍺∨⍙LA ⍵
  }

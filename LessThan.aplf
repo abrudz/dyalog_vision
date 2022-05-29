@@ -1,5 +1,2 @@
- LessThan←{ ⍝ < monadic promote
-     0::∆SIGNAL ⎕DMX
-     0≠⎕NC'⍺':⍺<⍙LA ⍵
-     ⍵⍴⍨1,⍴⍵
- }
+ f←LessThan ⍝ < monadic promote
+ f←<⍙LA
