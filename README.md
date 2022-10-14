@@ -16,7 +16,7 @@ You have three options:
 
 1. Use the extensions directly with the glyph names, e.g. `4 1 dyalog_vision.RightShoeUnderbar ⎕A`.
 2. Use `dyalog_vision.∆FIX` as a drop in for `⎕FIX`.
-3. Use `dyalog_vision.⍙Repl #` to start a (limited) session where the glyphs work. Enter `→` to exit.
+3. Use `dyalog_vision.⍙REPL #` to start a (limited) session where the glyphs work. Enter `→` to exit.
 
 ### Content
 
