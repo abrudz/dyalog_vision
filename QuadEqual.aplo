@@ -1,1 +1,15 @@
+QuadEqual←{ ⍝ ⌸ allowing operand to be vocabulary (and then using {⊂⍵} as internal operand)
+     ⍺←⊢  ⍝
+     3=40 ⎕ATX'⍺⍺':⍺ ⍺⍺⌸⍵  ⍝ fn operand: current definition
+     3=40 ⎕ATX'⍺':⍵ ∇⍳≢⍵   ⍝ monadic
+     
+     ⎕IO←1
+     mask←(≢⍺⍺)≥⍺⍺⍳⍺  ⍝ high-rank ∊
+     keys←⍺⍺⍪mask⌿⍺
 
+     values←mask⌿⍵
+     values⍴⍨←(≢⍺⍺)+@1⍴values  ⍝ append filler values while guarding against NONCE ERRORs
+     values⊖⍨←-≢⍺⍺             ⍝ move them to front
+
+     1↓¨keys{⊂⍵}⌸values
+ }
