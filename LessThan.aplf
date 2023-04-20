@@ -1,2 +1,5 @@
- f←LessThan ⍝ < monadic promote
- f←<⍙LA
+ LessThan←{ ⍝ > monadic sort ascending
+     0::∆SIGNAL ⎕DMX
+     0≠⎕NC'⍺':⍺<⍙LA ⍵
+     {(⊂⍋⍵)⌷⍵}⍵
+ }

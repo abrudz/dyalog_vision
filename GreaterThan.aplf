@@ -1,2 +1,5 @@
- f←GreaterThan
- f←>⍙LA
+ GreaterThan←{ ⍝ > monadic sort descending
+     0::∆SIGNAL ⎕DMX
+     0≠⎕NC'⍺':⍺>⍙LA ⍵
+     {(⊂⍒⍵)⌷⍵}⍵
+ }
