@@ -1,6 +1,6 @@
  Vel←{ ⍝ ∨ with demote
      0::∆SIGNAL ⎕DMX
      0≠⎕NC'⍺':⍺∨⍙LA ⍵
-     1≥≢⍴⍵:⍵
+     1≥≢⍴⍵:⍬⍴⍵
      ,[⍳2]⍵
  }
