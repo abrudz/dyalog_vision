@@ -1,2 +1,5 @@
- f←Equal ⍝ =
- f←=⍙LA
+Equal←{ ⍝ = monadic Rank
+     0::∆SIGNAL ⎕DMX
+     0≠⎕NC'⍺':⍺=⍙LA ⍵
+     ≢⍴⍵
+ }
