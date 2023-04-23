@@ -1,7 +1,11 @@
  ∆NG←{ ⍝ ⎕NG Name Get
      0::∆SIGNAL ⎕DMX
      ⍺←⎕THIS
-     1≥|≡⍵:⍺⍎⍵
-     ns←(⊃⎕RSI)⍎⍕⍺
-     ns{0≠⍺.⎕NC⊃⊆⍵:⍺.⎕OR⊃⊆⍵ ⋄ 2=|≡⍵:⊃⌽⍵ ⋄ ⎕SIGNAL⊂('EN' 6)('Message'('Undefined name: ',⍵))}¨⍵
+     1∧.≥(|≡⍵)(≢⍴⍵):⍺⍎⍵
+     ns←((⊃⎕RSI)⍎⍕)⍣(~9∊⎕NC'⍺')⊢⍺
+     ns{
+         (1=≡⍵)∧(2≡⍥,⍴⍵)∧326=⎕DR ⍵:⍺∇(,⊃⍵)(⊃⌽⍵)
+         0≠⍺.⎕NC⊃⊆⍵:⍺.⎕OR⊃⊆⍵
+         ⎕SIGNAL⊂('EN' 6)('Message'('Undefined name: ',⍵))
+     }¨⍵
  }

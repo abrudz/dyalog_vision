@@ -1,5 +1,5 @@
- LessThan←{ ⍝ > monadic sort ascending
+ LessThan←{ ⍝ < monadic Major Cells
      0::∆SIGNAL ⎕DMX
      0≠⎕NC'⍺':⍺<⍙LA ⍵
-     {(⊂⍋⍵)⌷⍵}⍵
+     ⊂⍤¯1⊢⍵
  }

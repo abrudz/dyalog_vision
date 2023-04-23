@@ -1,5 +1,5 @@
- GreaterThan←{ ⍝ > monadic sort descending
+ GreaterThan←{ ⍝ > monadic Join
      0::∆SIGNAL ⎕DMX
      0≠⎕NC'⍺':⍺>⍙LA ⍵
-     {(⊂⍒⍵)⌷⍵}⍵
+     ⊃⊃{,[⍺]/[⍺]⍵}/(⍳≢⍴⍵),⊂⍵
  }

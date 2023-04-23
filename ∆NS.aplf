@@ -2,6 +2,9 @@
      0::∆SIGNAL ⎕DMX
      levels←+/∧\⎕RSI=⎕THIS
      caller←⊃levels↓⎕RSI
+     split←2≥≢⍴⍵
+     split>⎕NC'⍺':∇⊂⍤¯1⊢⍵
+     split:⍺∇⊂⍤¯1⊢⍵
      ⍺←⊢
      a←⍺
      nc←⎕NC'⍺'
