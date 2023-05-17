@@ -1,7 +1,7 @@
  ∆NS←{ ⍝ ⎕NS which allows name-value pairs
      0::∆SIGNAL ⎕DMX
      levels←+/∧\⎕RSI=⎕THIS
-     caller←⊃levels↓⎕RSI
+     caller←⊃levels↓⎕RSI,⎕THIS
      split←2≤≢⍴⍵
      split>⎕NC'⍺':∇⊂⍤¯1⊢⍵
      split:⍺∇⊂⍤¯1⊢⍵
