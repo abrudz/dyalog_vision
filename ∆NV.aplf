@@ -1,0 +1,17 @@
+ ∆NV←{ ⍝ ⎕NV ─ Name-Values
+⍝ LEFT ARGUMENT: target namespace (default is calling space)
+⍝ RIGHT ARGUMENT: like ⎕NL's
+⍝ RESULT:
+⍝ vector of name-value pairs if any element of right argument is negative
+⍝ 2-element vector of names matrix and value vector otherwise
+
+     ⎕ML←1
+     ⍺←⊃⎕RSI
+     target←⍺⍎'⎕THIS' ⍝ ensure ref
+     nl←target.⎕NL ⍵
+     ∨/bad←3 4∊⍨target.⎕NC↑nl:⎕SIGNAL⊂('EN' 2)('Message'('Invalid value: ',' '~⍨⊃nl⌷⍨1⍳⍨bad))
+     nl≡0⍴⊂'':0⍴⊂'' 0 ⍝ no elements
+     nl≡0 0⍴'':nl ⍬   ⍝ no rows
+     ∨/0>⍵:target.{⍵(⍎⍵)}¨nl
+     target.{⍵(⍎¨↓⍵)}nl
+ }

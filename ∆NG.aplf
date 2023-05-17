@@ -1,11 +1,53 @@
- ∆NG←{ ⍝ ⎕NG Name Get
-     0::∆SIGNAL ⎕DMX
-     ⍺←⎕THIS
-     1∧.≥(|≡⍵)(≢⍴⍵):⍺⍎⍵
-     ns←((⊃⎕RSI)⍎⍕)⍣(~9∊⎕NC'⍺')⊢⍺
-     ns{
-         (1=≡⍵)∧(2≡⍥,⍴⍵)∧326=⎕DR ⍵:⍺∇(,⊃⍵)(⊃⌽⍵)
-         0≠⍺.⎕NC⊃⊆⍵:⍺.⎕OR⊃⊆⍵
-         ⎕SIGNAL⊂('EN' 6)('Message'('Undefined name: ',⍵))
-     }¨⍵
+ ∆NG←{ ⍝ ⎕NG ─ Name Get with optional fall-back values
+
+     ⍝ LEFT ARG specifies where to extract values from:
+     ⍝ (nothing) ⍝ the current namespace
+     ⍝ ref       ⍝ an existing namespace
+     ⍝ name      ⍝ a existing namespace of this name
+
+     ⍝ RIGHT ARG specifies which values to extract:
+     ⍝ (empty vector) ⍝ nothing
+     ⍝ name1          ⍝ value of "name1"
+     ⍝ name1 name2    ⍝ values of "name1" and "name2"
+     ⍝ ↑name1 name2   ⍝ values of "name1" and "name2"
+     ⍝ ⊂name1         ⍝ ⊂value of "name1"
+     ⍝ ⊂name1 value1  ⍝ ⊂value of "name1" but "value1" if absent
+     ⍝ (name1 value1)name2           ⍝ value of "name1" but "value1" if absent, and value of "name2"
+     ⍝ (name1 value1)(⊂name2)        ⍝ value of "name1" but "value1" if absent, and value of "name2"
+     ⍝ (name1 value1)(name2 value2)  ⍝ value of "name1" but "value1" if absent, and value of "name2" but "value2" if absent
+     ⍝ (↑name1 value1)(name2 value2) ⍝ value of "name1" but "value1" if absent, and value of "name2" but "value2" if absent
+
+     ⍝ RESULT:
+     ⍝ 0⍴⊂'' if right argument is empty
+     ⍝ values otherwise
+
+     ⎕ML←1
+     3≤≢⍴⍵:⎕SIGNAL 4
+     0=≢⍵:0⍴⊂''
+     parent←⊃⎕RSI
+     ⍺←parent                         ⍝ ensure dyadic
+     (String ⍺)∧9=parent.⎕NC⍕⍺:⍵ ∇⍨⍎⍺ ⍝ ensure ref
+     ∧/2=≢¨⍵(⍴⊃⍵):⍺ ∇⊃{↓⍉↑(↓⍺)⍵}/⍵    ⍝ ensure name-value pairs
+     2=≢⍴⍵:⍺ ∇↓⍵                      ⍝ ensure name list
+
+     Exec←⍺.{
+         0::⎕SIGNAL⊂⎕DMX.(('EN'EN)('Message'Message))
+         ¯1=⎕NC'⍵':⎕SIGNAL⊂('EN' 11)('Message'('Invalid name: ',⍵))
+         0∧.=⎕NC'⍺'⍵:⎕SIGNAL⊂('EN' 6)('Message'('Undefined name: ',⍵))
+         0=⎕NC ⍵:⍺
+         1 2 8 9∊⍨⎕NC ⍵:⍎⍵
+         ⎕SIGNAL⊂('EN' 2)('Message'('Invalid value: ',⍵))
+     }
+     String ⍵:Exec ⍵
+     ∧/String¨⍵:Exec¨⍵
+     ⍬≡⍴⍵:⊃Exec⍨/⊃⍵
+
+     Norm←{
+         String ⍵:⍵
+         ⍬≡⍴⍵:⊃⍵
+         ⊂⍵
+     }
+     ∧/String∘⊃∘⊆¨⍵:⍺ ∇∘Norm¨⍵
+
+     ⎕SIGNAL 11
  }

@@ -1,23 +1,51 @@
- ∆NS←{ ⍝ ⎕NS which allows name-value pairs
-     0::∆SIGNAL ⎕DMX
-     levels←+/∧\⎕RSI=⎕THIS
-     caller←⊃levels↓⎕RSI,⎕THIS
-     split←2≤≢⍴⍵
-     split>⎕NC'⍺':∇⊂⍤¯1⊢⍵
-     split:⍺∇⊂⍤¯1⊢⍵
-     ⍺←⊢
-     a←⍺
-     nc←⎕NC'⍺'
-     ref←{
-         2=⍵:caller⍎a caller.⎕NS ⍬
-         3=⍵:caller.⎕NS ⍬
-         9=⍵:caller⍎'a'caller.⎕NS ⍬
-     }nc
-     _←ref{ ⍝ new behaviour
-         (,1)≢(⍴,≡)⍵:⍺⍺ caller.⍎⍺,'←⍵ ⋄ ⍺⍺' ⍝ non-⎕OR: use value
-         4 11::⍺⍺ caller.⍎⍺,'←⎕NS ⍵ ⋄ ⍺⍺' ⍝ object?
-         ⍺⍺ caller.⍎⍺,'←⍎⎕FX ⍵ ⋄ ⍺⍺⊣⍺{⍺≡⍵:⍬ ⋄ ⎕EX ⍵}⎕FX ⍵' ⍝ function?
-     }/¨⍵
-     2=nc:_←⍕ref
-     ref
+ ∆NS←{ ⍝ ⎕NS ─ allows name-value pairs, names values, and ref left arg
+
+     ⍝ LEFT ARG specifies what target to populate:
+     ⍝ (nothing) ⍝ a new unnamed ns
+     ⍝ ref       ⍝ an existing namespace
+     ⍝ name      ⍝ a namespace of this name (create if missing)
+
+     ⍝ RIGHT ARG specifies what to put into the target:
+     ⍝ (empty vector) ⍝ nothing
+     ⍝ name1          ⍝ copy "name1" from the calling space
+     ⍝ name1 name2    ⍝ copy "name1" and "name2" from the calling space
+     ⍝ ↑name1 name2   ⍝ copy "name1" and "name2" from the calling space
+     ⍝ ⊂name1         ⍝ copy "name1" from the calling space
+     ⍝ ⊂name1 value1  ⍝ "name1" with the value "value1"
+     ⍝ (name1 value1)name2           ⍝ "name1" with the value "value1" and copy "name2" from the calling space
+     ⍝ (name1 value1)(⊂name2)        ⍝ "name1" wit the value "value1" and copy name2 from the calling space
+     ⍝ (name1 value1)(name2 value2)  ⍝ "name1" with the value "value1" and "name2" with the value "value2"
+     ⍝ (↑name1 value1)(name2 value2) ⍝ "name1" with the value "value1" and "name2" with the value "value2"
+
+     ⍝ RESULT:
+     ⍝ shy name if left arg is name
+     ⍝ not-shy ref otherwise
+
+     ⎕ML←1
+     ⍺←⊢ ⍝ default to unnamed namespace
+     Return←{_←⍕⍵}⍣(2∊⎕NC'⍺') ⍝ shy string?
+     parent←⊃⎕RSI
+     NS←parent.⎕NS
+     On←{
+         String ⍵:⍵ ⍺⍺ ⍺⍎⍵
+         String↑⍵:⍺(⊢⍺⍺⍎)↑⍵
+         ⍺⍺/⍵
+     }
+     Ref←(326=⎕DR)∧0=≡
+
+     _∆NS←{
+         0=⍺⍺.⎕NC'⍺':⍵ ∇⍨NS ⍬          ⍝ ensure dyadic
+         Char ⍺:⍵ ∇⍨⍺⍺⍎⍺⊣⍺ NS ⍬        ⍝ ensure ref
+         0=≢⍵:⍺                        ⍝ nothing to set
+         ∧/2=≢¨⍵(⍴⊃⍵):⍺ ∇⊃{↓⍉↑(↓⍺)⍵}/⍵ ⍝ ensure name-value pairs
+         2=≢⍴⍵:⍺ ∇↓⍵                   ⍝ ensure name list
+
+         (String¨∧.∨Ref)⊆⍵:⍺⊣'ns'⎕NS ⍵⊣ns←⍺ ⍝ named ns
+         Assign←⍺.{
+             0 2 9∊⍨⎕NC ⍺:⍎⍺,'←⍵'
+             ⎕SIGNAL⊂('EN' 6)('ENX' 7)('Message'('Can''t change nameclass on assignment: ',⍺))
+         }
+         ⍺⊣⍺⍺ Assign On¨⊂⍣(2=|≡⍵)⊢⍵
+     }
+     Return ⍺(parent _∆NS)⍵
  }
