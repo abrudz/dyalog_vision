@@ -1,4 +1,4 @@
- Ö←{ ⍝ ⍥ ⍝ also depth
+ CircleDiaeresis←{ ⍝ ⍥ ⍝ also depth
      0::⎕SIGNAL⊂⎕DMX.(('EN'EN)('EM'EM)('Message'(OSError{⍵,2⌽(×≢⊃⍬⍴2⌽⍺,⊂'')/'") ("',⊃⍬⍴2⌽⍺}Message)))
      ncs←⎕NC↑'⍺' '⍵⍵'
      0 3≡ncs:⍺⍺ ⍵⍵ ⍵       ⍝   f⍥g Y
