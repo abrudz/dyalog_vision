@@ -1,5 +1,6 @@
  Rho←{ ⍝ ⍴ autosize: 0.5 (shorten) 1.5 (recycle) 2.5 (pad) and allowing reversal of axis by negation of length
      0::∆SIGNAL ⎕DMX
+     0=⎕NC'⍺':⍴⍵ ⍝ monadic case
      m←⍺≠⌊⍺ ⍝ find the special dimension, if any
      1<+/m:⎕SIGNAL⊂('EN' 11)('Message' 'At most one shape element can be fractional')
      3<|m+.×⍺:⎕SIGNAL⊂('EN' 11)('Message' 'The fractional shape element must be between ¯3 and 3')
