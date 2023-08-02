@@ -59,4 +59,4 @@ You have three options:
 | [∆NV](∆NV.aplf)                             | `⎕NV`     | 🔺    | Names and Values                                                                                                                                                                                                                      | `ref⎕NV -2 9                                                                                                   |
 | [∆SIGNAL](∆signal.aplf)                     | `⎕SIGNAL` | 🔵    | Allows `⎕DMX`-style ref argument                                                                                                                                                                                                      | `⎕SIGNAL ⎕DMX`                                                                                                 |
 
-\* 🔺 new feature 🔶 added valence 🔵 expanded domain ⚠ breaking change ✅ scheduled for 20.0 (except monadic `⊇`)
+\* 🔺 new feature 🔶 added valence 🔵 expanded domain ⚠ breaking change ✅ scheduled for 20.0
