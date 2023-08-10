@@ -1,0 +1,5 @@
+ QuestionMark←{ ⍝ ? Dyadic allows arrays
+     0::∆SIGNAL ⎕DMX
+     0=⎕NC'⍺':?⍙LA ⍵    ⍝ monadic
+     ⍺⍴⎕IO+⍵∘⊤¨⍺?⍥(×/)⍵
+ }
