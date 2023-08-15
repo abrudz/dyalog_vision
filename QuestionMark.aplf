@@ -1,5 +1,8 @@
- QuestionMark←{ ⍝ ? Dyadic allows arrays
+ QuestionMark←{ ⍝ ? Dyadic allows arrays and distribution
      0::∆SIGNAL ⎕DMX
      0=⎕NC'⍺':?⍙LA ⍵    ⍝ monadic
-     ⍺⍴⎕IO+⍵∘⊤¨⍺?⍥(×/)⍵
+     0≡⍥,⍵:?⍺⍴0
+     326≠⎕DR ⍵:⍺⍴⎕IO+⍵∘⊤¨⍺?⍥(×/)⍵
+     (d s)←∊¨1 1⊂⍵
+     s(16808⌶)d ⍺
  }
