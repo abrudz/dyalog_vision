@@ -1,8 +1,11 @@
  QuestionMark←{ ⍝ ? Dyadic allows arrays and distribution
      0::∆SIGNAL ⎕DMX
-     0=⎕NC'⍺':?⍙LA ⍵    ⍝ monadic
+     m←0=⎕NC'⍺'
+     sw←326≠⎕DR ⍵
+     m∧sw:?⍵    ⍝ monadic simple
+     m:⍬∘∇¨⍵    ⍝ monadic nested
      0≡⍥,⍵:?⍺⍴0
-     326≠⎕DR ⍵:⍺⍴⎕IO+⍵∘⊤¨⍺?⍥(×/)⍵
+     sw:⍺⍴⎕IO+⍵∘⊤¨⍺?⍥(×/)⍵
      (d s)←∊¨1 1⊂⍵
      s(16808⌶)d ⍺
  }
