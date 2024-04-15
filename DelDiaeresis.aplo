@@ -1,12 +1,12 @@
  DelDiaeresis←{ ⍝ ⍢ Under a.k.a. Dual
      0::∆SIGNAL ⎕DMX
      ns←⎕NULL⍴⍨15⍴0 ⍝ special recognisable value
-     2 2≡⎕NC↑'⍺' '⍺⍺':⎕SIGNAL⊂('EN' 2)('Message' 'Array left argument conflicts with array left operand')
+     2 2≡⎕NC⊃⍤0⊢'⍺' '⍺⍺':⎕SIGNAL⊂('EN' 2)('Message' 'Array left argument conflicts with array left operand')
      ⍺←{⍵ ⋄ ⍺⍺}      ⍝ no ⍺: pass through
      ⍵⍵{
          aa←⍺⍺
          3::0
-         (⎕CR'DelTilde')≡2⊃⎕CR'aa'
+         (⎕CR'DelTilde')≡⊃⍬⍴1⌽⎕CR'aa'
      }⍬:ww.InvFn(ww.NrmFn ⍺)⍺⍺(ww←⍵⍵ ns).NrmFn ⍵
      ⍵ ⍵⍵{           ⍝ pass in original ⍵
          A←⍺             ⍝ modifiable array

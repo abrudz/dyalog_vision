@@ -1,6 +1,6 @@
  EpsilonUnderbar←{ ⍝ ⍷ but Type when monadic
      0::∆SIGNAL ⎕DMX
      2=⎕NC'⍺':⍺⍷⍵
-     326≠⎕DR ⍵:⊃0⍴⊂⍵  ⍝ shortcut if homogenous
-     w⊣(∊w)←{16::⍵ ⋄ ⊃0⍴⊂⍵}¨∊w←⍵
+     326≠⎕DR ⍵:⊃⍬⍴0⍴⊂⍵  ⍝ shortcut if homogenous
+     w⊣(∊w)←{16::⍵ ⋄ ⊃⍬⍴0⍴⊂⍵}¨∊w←⍵
  }

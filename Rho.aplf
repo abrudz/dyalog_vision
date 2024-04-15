@@ -5,7 +5,7 @@
      1<+/m:⎕SIGNAL⊂('EN' 11)('Message' 'At most one shape element can be fractional')
      3<|m+.×⍺:⎕SIGNAL⊂('EN' 11)('Message' 'The fractional shape element must be between ¯3 and 3')
      n←(≢,⍵)÷×/(~m)/|⍺ ⍝ the divisor of the shape
-     t←|⊃m/⍺
+     t←|⊃⍬⍴m/⍺
      n←⌈⌊⍣(0.5=t)⊢n
      s←n@{m}|⍺
      z←s××⍺

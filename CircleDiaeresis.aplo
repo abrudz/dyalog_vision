@@ -1,11 +1,11 @@
  CircleDiaeresis←{ ⍝ ⍥ ⍝ also depth
      0::⎕SIGNAL⊂⎕DMX.(('EN'EN)('EM'EM)('Message'(OSError{⍵,2⌽(×≢⊃⍬⍴2⌽⍺,⊂'')/'") ("',⊃⍬⍴2⌽⍺}Message)))
-     ncs←⎕NC↑'⍺' '⍵⍵'
+     ncs←⎕NC⊃⍤0⊢'⍺' '⍵⍵'
      0 3≡ncs:⍺⍺ ⍵⍵ ⍵       ⍝   f⍥g Y
      2 3≡ncs:⍺ ⍺⍺⍥⍵⍵ ⍵     ⍝ X f⍥g Y
 
      1<≢⍴⍵⍵:⎕SIGNAL 4      ⍝ non-vec/scal: RANK
-     1≠1 4⍸≢⍵⍵:⎕SIGNAL 5   ⍝ not 1…3 elements: LENGTH
+     ⎕IO≠1 4⍸≢⍵⍵:⎕SIGNAL 5 ⍝ not 1…3 elements: LENGTH
      (c←⎕NS ⍬).⎕CT←1E¯14   ⍝ tolerant space
      c.≢∘⌊⍨⍵⍵:⎕SIGNAL 11   ⍝ not ints: DOMAIN
 
@@ -30,4 +30,3 @@
      c.>/b:S∘⍵¨⍺
      c.∧/b:⍺ S¨⍵
  }
- 

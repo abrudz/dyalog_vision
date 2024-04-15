@@ -27,7 +27,7 @@
      parent←⊃⎕RSI
      ⍺←parent                         ⍝ ensure dyadic
      (String ⍺)∧9=parent.⎕NC⍕⍺:⍵ ∇⍨⍎⍺ ⍝ ensure ref
-     ∧/2=≢¨⍵(⍴⊃⍵):⍺ ∇⊃{↓⍉↑(↓⍺)⍵}/⍵    ⍝ ensure name-value pairs
+     ∧/2=≢¨⍵(⍴⊃⍬⍴⍵):⍺ ∇⊃{↓⍉⊃⍤0⊢(↓⍺)⍵}/⍵    ⍝ ensure name-value pairs
      2=≢⍴⍵:⍺ ∇↓⍵                      ⍝ ensure name list
 
      Exec←⍺.{
@@ -40,14 +40,14 @@
      }
      String ⍵:Exec ⍵
      ∧/String¨⍵:Exec¨⍵
-     ⍬≡⍴⍵:⊃Exec⍨/⊃⍵
+     ⍬≡⍴⍵:⊃⍬⍴Exec⍨/⊃⍬⍴⍵
 
      Norm←{
          String ⍵:⍵
-         ⍬≡⍴⍵:⊃⍵
+         ⍬≡⍴⍵:⊃⍬⍴⍵
          ⊂⍵
      }
-     ∧/String∘⊃∘⊆¨⍵:⍺ ∇∘Norm¨⍵
+     ∧/String∘(⊃⍬∘⍴)∘⊆¨⍵:⍺ ∇∘Norm¨⍵
 
      ⎕SIGNAL 11
  }

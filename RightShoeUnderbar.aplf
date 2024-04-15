@@ -1,6 +1,6 @@
  RightShoeUnderbar←{ ⍝ ⊇ select/last
      0::∆SIGNAL ⎕DMX
-     0=⎕NC'⍺':⊃⌽,⍵
+     0=⎕NC'⍺':⊃⍬⍴⌽,⍵
      0::⎕SIGNAL 5(⊢-=)⎕EN
      1≥|≡⍺:⍵⌷⍨⊂⍺
      {

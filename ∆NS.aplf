@@ -28,7 +28,7 @@
      NS←parent.⎕NS
      On←{
          String ⍵:⍵ ⍺⍺ ⍺⍎⍵
-         String↑⍵:⍺(⊢⍺⍺⍎)↑⍵
+         String⊃⍤0⊢⍵:⍺(⊢⍺⍺⍎)↑⍵
          ⍺⍺/⍵
      }
      Ref←(326=⎕DR)∧0=≡
@@ -37,7 +37,7 @@
          0=⍺⍺.⎕NC'⍺':⍵ ∇⍨NS ⍬          ⍝ ensure dyadic
          Char ⍺:⍵ ∇⍨⍺⍺⍎⍺⊣⍺ NS ⍬        ⍝ ensure ref
          0=≢⍵:⍺                        ⍝ nothing to set
-         ∧/2=≢¨⍵(⍴⊃⍵):⍺ ∇⊃{↓⍉↑(↓⍺)⍵}/⍵ ⍝ ensure name-value pairs
+         ∧/2=≢¨⍵(⍴⊃⍵):⍺ ∇⊃⍬⍴{↓⍉⊃⍤0⊢(↓⍺)⍵}/⍵ ⍝ ensure name-value pairs
          2=≢⍴⍵:⍺ ∇↓⍵                   ⍝ ensure name list
 
          (String¨∧.∨Ref)⊆⍵:⍺⊣'ns'⎕NS ⍵⊣ns←⍺ ⍝ named ns

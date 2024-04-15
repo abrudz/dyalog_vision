@@ -24,21 +24,22 @@
  from←'''[^'']*''' '⍝.*',' ?'∘,¨⎕THIS,⍥⍕¨'.',¨names,¨⊂'\b ?'
  to←'&&',glyphs
 
- :While '→'≢⊃⌽' '~⍨input←⍞⊣⍞←6⍴''
+ :While '→'≢⊃⌽' '~⍨input←⍞⊣⍞←6⍴''⊣⎕RTL←0
+     ⎕CT ⎕DCT ⎕DIV ⎕IO ⎕FR ⎕PP ⎕RL←ns.(⎕CT ⎕DCT ⎕DIV ⎕IO ⎕FR ⎕PP ⎕RL)
      :Trap 0
-         :If ']'≡⊃input~' '
+         :If ']'≡⍬⍴input~' '
              ⎕←⎕SE.UCMD input
          :ElseIf ')vision'≡⎕C input~' '
              Err 1↓∊' ',¨glyphs
-         :ElseIf ')'≡⊃input~' '
+         :ElseIf ')'≡⍬⍴input~' '
              ⎕←ns ⍙Execute'⎕'@(input⍳')')⊢input
          :Else
              ⎕←ns ⍙Execute input
          :EndIf
      :Else
-         Err(⊢↓⍨'⍎'=⊃)⎕DMX.(OSError{⍵,2⌽(×≢⊃⍬⍴2⌽⍺,⊂'')/'") ("',⊃⍬⍴2⌽⊆⍺}Message{⍵,⍺,⍨': '/⍨×≢⍺}⊃⍬⍴DM,⊂'')
-         pos←'^'⍳⍨caret←3⊃⎕DMX.DM
-         shorten←11+(⊢-⍥≢from ⎕R to)pos↑code←2⊃⎕DMX.DM
+         Err⍬(⊢↓⍨'⍎'=⍴)⎕DMX.(OSError{⍵,2⌽(×≢⊃⍬⍴2⌽⍺,⊂'')/'") ("',⊃⍬⍴2⌽⊆⍺}Message{⍵,⍺,⍨': '/⍨×≢⍺}⊃⍬⍴DM,⊂'')
+         pos←'^'⍳⍨caret←⊃⍬⍴2⌽⎕DMX.DM
+         shorten←11+(⊢-⍥≢from ⎕R to)pos↑code←⊃⍬⍴1⌽⎕DMX.DM
          Err'      ',{(∨\' '≠⍵)/⍵}11↓from ⎕R to⊢code
          Err'     ',shorten↓caret
      :EndTrap
