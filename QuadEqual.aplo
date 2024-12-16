@@ -4,12 +4,12 @@ QuadEqual←{ ⍝ ⌸ allowing operand to be vocabulary (and then using {⊂⍵}
      3=40 ⎕ATX'⍺':⍵ ∇⍳≢⍵   ⍝ monadic
      
      ⎕IO←1
-     mask←(≢⍺⍺)≥⍺⍺⍳⍺  ⍝ high-rank ∊
-     keys←⍺⍺⍪mask⌿⍺
-
+     uvoc←∪⍺⍺
+     mask←(≢uvoc)≥uvoc⍳⍺  ⍝ high-rank ∊
+     keys←uvoc⍪mask⌿⍺
      values←mask⌿⍵
-     values⍴⍨←(≢⍺⍺)+@1⍴values  ⍝ append filler values while guarding against NONCE ERRORs
-     values⊖⍨←-≢⍺⍺             ⍝ move them to front
+     values⍴⍨←(≢uvoc)+@1⍴values  ⍝ append filler values while guarding against NONCE ERRORs
+     values⊖⍨←-(≢uvoc)           ⍝ move them to front
 
-     1↓¨keys{⊂⍵}⌸values
- }
+     (1↓¨keys{⊂⍵}⌸values)[uvoc⍳⍺⍺]
+}
