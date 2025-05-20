@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>Formal Proposal — Select</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><style>text{fill:black}@media(prefers-color-scheme:dark){text{fill:white}}</style><text x=%22.2em%22 y=%22.8em%22 font-size=%22100%22 font-family=%22APL385 Unicode%22>⊇</text></svg>">
+<style>
+body{line-height:1.15;font-family:DejaVu Serif;hyphens:auto}
+table{border-spacing:1ex}
+th{text-align:left}
+td>*{vertical-align:middle}
+code,pre{white-space:pre;background:#eee;margin:0;padding:0 .33ex;border-radius:.33ex;display:inline-block;font-family:DejaVu Sans Mono}
+img{max-width:100%}
+.i{font-family:Iosevka SS09}
+span{white-space:nowrap}
+del{color:#7004;text-decoration-color:#3004;text-decoration-thickness:0.1em}
+ins{text-decoration-color:#0704;text-decoration-thickness:0.1em}
+.e{border-left:0.2em solid #770;margin-left:-0.5em;padding-left:0.3em;border-top-left-radius:0;border-bottom-left-radius:0}
+
+@media print{
+  h1,h2,h3{break-after:avoid}
+  table{break-inside:avoid}
+  .b{break-after:avoid;break-before:page}
+  sup>a{text-decoration:none;color:inherit}
+  img{max-height:95vh}
+}
+</style>
+</head>
+<body lang="en"><h1 id='formal-proposal-select'>Formal Proposal: Select</h1>
+<!--<p class="e"><em><strong>Note:</strong> This proposal's specification for <a href='#'></a>  has been changed based on feedback received after its initial publication. Affected sections are marked by a vertical bar on the left, with removed text <del>struck through</del> and added text <ins>underlined</ins>.</em></p>-->
+<p>Among the most common data manipulations in APL are the selection parts of a larger array, and reordering an array into a new ordering. Since APL\360, this need has been met by square bracket indexing. However, the introduction of nested arrays, the Rank operator (as part of a drive towards leading axis orientation), and function composition, has revealed a problem with the bracket syntax. Since the bracket isn't a proper function, operators like Each (<code>¨</code>), Rank (<code>⍤</code>), and Bind (<code>∘</code>), cannot be used with it. This is a major flaw in the ease of expression, one that breaks the flow of LEGO-like combination in the language.</p> 
+<p>The flexibility of the APL language has allowed many APL programmers to work around the issue, either by implementing custom selection functions, or after the introduction of anonymous dfns, by wrapping bracket indexing, thereby giving it function syntax (<code>{⍵[⍺]}</code>, <code>{⍵[⍺;]}</code>, etc. or worse: <code>{⍎'⍵[⍺',(';'⍴⍨¯1+≢⍴⍵),']'}</code>). However, these solutions are often slow and obscure.<p>
+<h2 id='history'>History</h2>
+<p>To address this, Ken Iverson included a <i>From</i> function (<code>{</code>) in <cite>A Dictionary of APL</cite> in ’86, and <a href="https://www.jsoftware.com/papers/from.htm" target="_blank">Roger Hui echoed this in ’87</a> 
+<p>Roger Hui suggested a partial solution to this</a> in ’87, and it was included in J from its beginnings in ’90. APL derivatives (and thus competitors) like J and BQN have provided such functionality in proper functional form. Hobbyist APL implementations have also adopted </p>
+</body>
+</html>
